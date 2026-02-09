@@ -8,4 +8,5 @@
 - (void)open:(CDVInvokedUrlCommand*)command;
 - (void)requestPermission:(CDVInvokedUrlCommand*)command;
 - (void)hasPermission:(CDVInvokedUrlCommand*)command;
+- (void)isFaceIdEnabled:(CDVInvokedUrlCommand*)command;
 @end
