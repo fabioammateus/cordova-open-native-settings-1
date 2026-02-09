@@ -1,6 +1,7 @@
 #import "NativeSettings.h"
 #import <UserNotifications/UserNotifications.h>
 #import <Cordova/CDVPlugin.h>
+#import <LocalAuthentication/LocalAuthentication.h>
 
 @implementation NativeSettings
 
@@ -229,6 +230,28 @@
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:granted];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
+}
+
+- (void)isFaceIdEnabled:(CDVInvokedUrlCommand*)command {
+    LAContext *context = [[LAContext alloc] init];
+    NSError *error = nil;
+    
+    // Check if the device is capable of biometric authentication
+    BOOL canEvaluate = [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error];
+    
+    BOOL isFaceID = NO;
+    
+    if (canEvaluate) {
+        if (@available(iOS 11.0, *)) {
+            // Check if the specific biometric type is FaceID
+            if (context.biometryType == LABiometryTypeFaceID) {
+                isFaceID = YES;
+            }
+        }
+    }
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:isFaceID];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
