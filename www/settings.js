@@ -14,4 +14,8 @@ NativeSettings.requestPermission = function(onsucess, onfail) {
 	cordova.exec(onsucess, onfail, "NativeSettings", "requestPermission");
 };
 
+NativeSettings.isFaceIdEnabled = function(onsucess, onfail) {
+	cordova.exec(onsucess, onfail, "NativeSettings", "isFaceIdEnabled");
+};
+
 module.exports = NativeSettings;
