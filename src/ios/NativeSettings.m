@@ -254,4 +254,15 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)isBiometricsEnabled:(CDVInvokedUrlCommand*)command {
+    LAContext *context = [[LAContext alloc] init];
+    NSError *error = nil;
+
+    // This returns YES if Touch ID or Face ID is enrolled and available
+    BOOL canEvaluate = [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:canEvaluate];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 @end
