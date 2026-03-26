@@ -9,4 +9,5 @@
 - (void)requestPermission:(CDVInvokedUrlCommand*)command;
 - (void)hasPermission:(CDVInvokedUrlCommand*)command;
 - (void)isFaceIdEnabled:(CDVInvokedUrlCommand*)command;
+- (void)isBiometricsEnabled:(CDVInvokedUrlCommand*)command;
 @end
