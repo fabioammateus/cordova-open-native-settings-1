@@ -18,4 +18,8 @@ NativeSettings.isFaceIdEnabled = function(onsucess, onfail) {
 	cordova.exec(onsucess, onfail, "NativeSettings", "isFaceIdEnabled");
 };
 
+NativeSettings.isBiometricsEnabled = function(onsucess, onfail) {
+	cordova.exec(onsucess, onfail, "NativeSettings", "isBiometricsEnabled");
+};
+
 module.exports = NativeSettings;
